@@ -4,11 +4,12 @@ import { post } from 'axios'
 // Deberás utilizar los datos de tu cuenta Blizzard a la hora de hacer las llamadas a las
 // APIs.
 
-// La documentación comentas que hay número máximo de llamadas por segundo y hora a la API.
+// NOTA: La documentación comenta que hay número máximo de llamadas por segundo y hora
+//       permitidas a la API.
 
 // El client_id y el clientSecret deberían ser privados…
-const clientId = 'db5d7d6e7db543e0a3e13cf5812ce76'
-const clientSecret = 'wuf4Ym9jX5kOurOUnmnB8wdBO6VKSm6'
+const clientId = '139ee6f2bd134e269ad17b031ee99d32'
+const clientSecret = 'ijRfBb536w2z2zefg28ZMsh85UsqNAMU'
 
 // API URL para hacer oauth
 const region = 'eu'
@@ -18,13 +19,13 @@ function getToken () {
   // FormData es una clase que genera objetos para contener conjuntos de pares clave/valor
   const body = new FormData()
 
-  // El método 'append' de FormData sirve apara agregar un par clave/valor
+  // El método 'append' de FormDgit ass -Aata sirve apara agregar un par clave/valor
   // Agregamos el par 'grantType': 'client-credentials'
-  body.append('grantType', 'client-credentials')
+  body.append('grant_type', 'client_credentials')
 
   // En el objeto config especificamos los parámetros necesarios para hacer la llamada
   const config = {
-    headers: { 'Content-type': 'multipart/form-data' },
+    headers: { 'Content-Type': 'multipart/form-data' },
     auth: { username: clientId, password: clientSecret }
   }
 

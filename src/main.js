@@ -15,9 +15,20 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
-// Instancia principal dew Vue
+// Instancia principal de Vue
 new Vue({
   router,
   store,
+
+  methods: {
+    init () {
+      store.dispatch('oauth/getToken', null, { root: true })
+    }
+  },
+
+  created () {
+    this.init()
+  },
+
   render: h => h(App)
 }).$mount('#app')
