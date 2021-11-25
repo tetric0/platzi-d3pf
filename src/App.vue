@@ -13,7 +13,7 @@
   font-family Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
+  color #ffffff               // Color de letra blanco
+  background-color #15202B    // Color de fondo azul marino oscuro
+  padding 60px 0
 </style>
