@@ -20,6 +20,10 @@ export default {
     // Creamos la función getToken, que recibe como parámetro el objeto `context`
     // Gracias a la asignación de desestructuración de JavaScript, recogemos `commit` como argumento
     getToken ({ commit }) {
+      // Antes de lanbzar el proceso de obtención del token de autentificación, cambiamos el estado
+      // del módulo de Vuex 'loading' a true
+      commit('loading/SET_LOADING', true, { root: true })
+
       //  Realizamos la llamada HTTP para obtener el token
       oauth.getToken()
         //  Si no hay ningún error, guardamos el token en el módulo y continuamos con el flujo normal
@@ -32,8 +36,9 @@ export default {
           console.log('Error OAuth: ', err)
         })
         .finally(() => {
-          // Por ahora no, cuando acaba el proceso mostramos un mensaje de finalización
-          console.log('¡Hecho!')
+          // Cuando acaba el proceso de obtención del token de autentificación, ya sea con errores o no,
+          // cambiamos el estado del módulo de Vuex 'loading' a false
+          commit('loading/SET_LOADING', false, { root: true })
         })
     }
   }
