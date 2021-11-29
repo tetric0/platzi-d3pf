@@ -1,27 +1,51 @@
+// ATENCION - IMPORTANTE!!!
+//
+// Si tienes la versión actual de babel
+//
+// "babel-eslint": "^10.1.0"
+// Y te sale este error
+//
+// Cannot read property 'range' of null
+// configura los rules en el package.json
+//
+// "rules": {
+//       "template-curly-spacing": "off",
+//       "indent": [
+//         "error",
+//         2,
+//         {
+//           "ignoredNodes": [
+//             "TemplateLiteral"
+//           ]
+//         }
+//       ]
+//     },
+// de lo contrario tienes que cambiar a la versión que recomendaron al inicio.
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home/Index.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About/Index.vue')
-  }
+// Configuración rutas
+const routerOptions = [
+  { path: '/', name: 'Home' },
+  { path: '/region/:region/profile/:battleTag', name: 'Profile' },
+  { path: '/region/:region/profile/:battleTag/hero/:heroId', name: 'Hero' },
+  { path: '/about', name: 'About' },
+  { path: '/error', name: 'Error' },
+  { path: '*', redirect: { name: 'Home' } }
 ]
 
-const router = new VueRouter({
+// Rutas
+const routes = routerOptions.map(r => {
+  return {
+    ...r,
+    // Lazy load
+    component: () => import(`@/views/${r.name}/Index.vue`)
+  }
+})
+
+const router = new Router({
   routes
 })
 
