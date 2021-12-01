@@ -1,14 +1,16 @@
 <template>
   <div>
-    <!-- Usamos el compoenente de Loading -->
     <BaseLoading v-if="isLoading"/>
-    <h1>Profile View</h1>
+    <template v-if="profileData !== null">
+      <MainBlock :profile-data="profileData"/>
+    </template>
   </div>
 </template>
 
 <script>
 // Importamos el componente de Loading
 import BaseLoading from '@/components/BaseLoading'
+import MainBlock from './MainBlock/Index'
 
 import setError from '@/mixins/setError'
 import { getApiAccount } from '@/api/search'
@@ -22,8 +24,7 @@ export default {
   ],
 
   // Damos de alta el componente de Loading
-  components: { BaseLoading },
-
+  components: { BaseLoading, MainBlock },
   data () {
     return {
       // Añadimos la variable isLoading para controlar el componente BaseLoading
