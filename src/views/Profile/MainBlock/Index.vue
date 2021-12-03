@@ -1,5 +1,6 @@
 <template>
   <div class="grid-container">
+    <!-- Bloque izquierdo -->
     <div class="grid-item item-left">
       <!-- Usamos el componente TopHeroes -->
       <TopHeroes v-if="hasHeroes" :heroes="topHeroes"/>
@@ -8,13 +9,16 @@
       <!-- Usamos el componente ProgressList -->
       <ProgressList :acts="profileData.progression"/>
     </div>
+    <!-- Bloque derecho -->
     <div class="grid-item item-right">
-      <h1>Derecha</h1>
+      <PlayerStats :stats="statsData"/>
     </div>
   </div>
 </template>
 
 <script>
+// Importamos el componente PlayerStats
+import PlayerStats from './PlayerStats/Index'
 // Importamos el componente ProgressList
 import ProgressList from './ProgressList/Index'
 // Importamos el componente TopHeroes
@@ -26,6 +30,8 @@ export default {
   name: 'MainBlock',
 
   components: {
+    // Damos de alta el componente ProgressList
+    PlayerStats,
     // Damos de alta el componente ProgressList
     ProgressList,
     // Damos de alta el componente HeroesList
@@ -42,12 +48,18 @@ export default {
   },
 
   computed: {
+    // Stats del perfil de usuario
+    statsData () {
+      const { paragonLevel, kills, timePlayed } = this.profileData
+
+      return { paragonLevel, kills, timePlayed }
+    },
     // Comprobamos que hay héroes
     hasHeroes () {
       return this.profileData.heroes.length > 0
     },
 
-    // Devolvemos los tres primeros
+    // Devolvemos los héroes del top 3 de la cuenta
     topHeroes () {
       return this.profileData.heroes.slice(0, 3)
     },
