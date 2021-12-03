@@ -18,7 +18,7 @@
      <div class="d-flex justify-content-between border-top border-secondary pt-2 align-items-center mt-2">
         <small class="elite-kills">
           <!-- Jefes (Élites) asesinados -->
-          <span class="text-monospace">{{ hero.kills.elites }}</span>
+          <span class="text-monospace">{{ hero.kills.elites | formatNumber }}</span>
           Elite kills
         </small>
         <!-- Nivel. De color rojo si el héroe está muerto -->
@@ -29,8 +29,14 @@
 </template>
 
 <script>
+import { formatNumber } from '@/filters/numeral'
+
 export default {
   name: 'TopHero',
+
+  filters: {
+    formatNumber
+  },
 
   computed: {
     heroClass () {
@@ -51,7 +57,7 @@ export default {
 <style lang="stylus">
 .hero-portrait-wrapper
   .title-name
-    color white
+    color White
     font-weight 900
 
   .level-circle
