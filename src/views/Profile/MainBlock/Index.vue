@@ -1,8 +1,12 @@
 <template>
   <div class="grid-container">
     <div class="grid-item item-left">
+      <!-- Usamos el componente TopHeroes -->
       <TopHeroes v-if="hasHeroes" :heroes="topHeroes"/>
+      <!-- Usamos el componente HeroesList -->
       <HeroesList v-if="hasHeroesList" :heroes="heroesList"/>
+      <!-- Usamos el componente ProgressList -->
+      <ProgressList :acts="profileData.progression"/>
     </div>
     <div class="grid-item item-right">
       <h1>Derecha</h1>
@@ -11,6 +15,8 @@
 </template>
 
 <script>
+// Importamos el componente ProgressList
+import ProgressList from './ProgressList/Index'
 // Importamos el componente TopHeroes
 import TopHeroes from './TopHeroes/Index'
 // Importamos el componente HeroesList
@@ -20,7 +26,11 @@ export default {
   name: 'MainBlock',
 
   components: {
+    // Damos de alta el componente ProgressList
+    ProgressList,
+    // Damos de alta el componente HeroesList
     HeroesList,
+    // Damos de alta el componente TopHeroes
     TopHeroes
   },
 
