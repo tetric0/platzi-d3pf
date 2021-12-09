@@ -11,6 +11,7 @@
     </div>
     <!-- Bloque derecho -->
     <div class="grid-item item-right">
+      <!-- Usamos el componente PlayerStats -->
       <PlayerStats :stats="statsData"/>
     </div>
   </div>
@@ -30,7 +31,7 @@ export default {
   name: 'MainBlock',
 
   components: {
-    // Damos de alta el componente ProgressList
+    // Damos de alta el componente PlayerStats
     PlayerStats,
     // Damos de alta el componente ProgressList
     ProgressList,
@@ -51,9 +52,9 @@ export default {
     // Stats del perfil de usuario
     statsData () {
       const { paragonLevel, kills, timePlayed } = this.profileData
-
       return { paragonLevel, kills, timePlayed }
     },
+
     // Comprobamos que hay héroes
     hasHeroes () {
       return this.profileData.heroes.length > 0
