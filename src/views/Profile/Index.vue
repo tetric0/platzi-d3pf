@@ -2,7 +2,8 @@
   <div>
     <BaseLoading v-if="isLoading"/>
     <template v-if="profileData !== null">
-      <MainBlock :profile-data="profileData"/>
+     <MainBlock :profile-data="profileData"/>
+     <ArtisansBlock :artisans-data="artisansData"/>
     </template>
   </div>
 </template>
@@ -10,7 +11,10 @@
 <script>
 // Importamos el componente de Loading
 import BaseLoading from '@/components/BaseLoading'
+// Importamos el componente MainBlock
 import MainBlock from './MainBlock/Index'
+// Importamos el componente MainBlock
+import ArtisansBlock from './ArtisansBlock/Index'
 
 import setError from '@/mixins/setError'
 import { getApiAccount } from '@/api/search'
@@ -18,13 +22,18 @@ import { getApiAccount } from '@/api/search'
 export default {
   name: 'ProfileView',
 
-  // Damos de alta el mixin en el componente
+  // Habilitamos los mixins importados en el componente
   mixins: [
     setError
   ],
 
-  // Damos de alta el componente de Loading
-  components: { BaseLoading, MainBlock },
+  // Habilitamos los componentes importados en el componente
+  components: {
+    ArtisansBlock,
+    BaseLoading,
+    MainBlock
+  },
+
   data () {
     return {
       // Añadimos la variable isLoading para controlar el componente BaseLoading
@@ -36,7 +45,6 @@ export default {
   methods: {
     fetchData () {
       const { region, battleTag: account } = this.$route.params
-
       getApiAccount({ region, account })
         .then(({ data }) => {
           // Guardamos los datos en una variable local
@@ -66,6 +74,19 @@ export default {
         .finally(() => {
           this.isLoading = false
         })
+    }
+  },
+
+  computed: {
+    artisansData () {
+      return {
+        blacksmith: this.profileData.blacksmith,
+        blacksmithHardcore: this.profileData.blacksmithHardcore,
+        jeweler: this.profileData.jeweler,
+        jewelerHardcore: this.profileData.jewelerHardcore,
+        mystic: this.profileData.mystic,
+        mysticHardcore: this.profileData.mysticHardcore
+      }
     }
   },
 

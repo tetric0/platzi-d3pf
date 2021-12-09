@@ -1,8 +1,8 @@
 <template>
   <!-- Contenedor principal -->
-  <div class="hero-portrait-wrapper mb-5 mb-sm-0">
+  <div class="hero-portrait-wrapper mb-5 mb-sm-0 hover-cursor-pointer" @click="goToHero(hero.id)">
     <!-- Avatar -->
-    <div class="bg-secondary d-flex justify-content-center p-3 p-sm-0">
+    <div class="bg-secondary d-flex justify-content-center p-3 p-sm-0" @click="goToHero(hero.id)">
       <!-- Imagen de fondo, según la clase y el género -->
       <div :class="heroClass"></div>
     </div>
@@ -15,7 +15,8 @@
         <img v-if="hero.seasonal" src="@/assets/img/leaf.png" width="12px" class="">
       </h5>
 
-     <div class="d-flex justify-content-between border-top border-secondary pt-2 align-items-center mt-2">
+     <div class="d-flex justify-content-between border-top border-secondary pt-2 align-items-
+enter mt-2">
         <small class="elite-kills">
           <!-- Jefes (Élites) asesinados -->
           <span class="text-monospace">{{ hero.kills.elites | formatNumber }}</span>
@@ -29,10 +30,13 @@
 </template>
 
 <script>
+import goToHero from '@/mixins/goToHero'
 import { formatNumber } from '@/filters/numeral'
 
 export default {
   name: 'TopHero',
+
+  mixins: [goToHero],
 
   filters: {
     formatNumber
