@@ -21,14 +21,14 @@ export default {
   },
 
   props: {
-    artisanData: {
+    artisansData: {
       type: Object,
       required: true
     }
   },
 
   computed: {
-    artisanInfo () {
+    artisansInfo () {
       return [
         {
           name: 'blacksmith',
