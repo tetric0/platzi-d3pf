@@ -13,7 +13,7 @@
 import BaseLoading from '@/components/BaseLoading'
 // Importamos el componente MainBlock
 import MainBlock from './MainBlock/Index'
-// Importamos el componente MainBlock
+// Importamos el componente ArtisansBlock
 import ArtisansBlock from './ArtisansBlock/Index'
 
 import setError from '@/mixins/setError'
