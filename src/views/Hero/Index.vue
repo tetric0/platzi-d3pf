@@ -12,23 +12,21 @@
       <!--         - Se convierte en el bloque derecho -->
       <b-col md="12" lg="8" order-lg="2">
         <BaseLoading v-if="isLoadingItems"/>
-        <HeroItems v-if="items"/>
       </b-col>
-
       <!-- COLUMNA 1 (Attributes y Skills) -->
-      <!--     En pantallas medianas e inferiores: -->
-      <!--         - Ancho de 12 columnas sobre 12 -->
-      <!--         - Se convierte en el bloque inferior -->
-      <!--     En pantallas grandes y superiores: -->
-      <!--         - Ancho de 4 sobre 12 -->
-      <!--         - Se convierte en el bloque izquierdo -->
+      <!--   En pantallas medianas e inferiores: -->
+      <!--     - Ancho de 12 columnas sobre 12 -->
+      <!--     - Se convierte en el bloque inferior -->
+      <!--   En pantallas grandes y superiores: -->
+      <!--     - Ancho de 4 sobre 12 -->
+      <!--     - Se convierte en el bloque izquierdo -->
       <b-col md="12" lg="4" order-lg="1">
         <template v-if="hero">
-          <HeroAttributes/>
-          <HeroSkills/>
+          <HeroAttributes :attributes="detailStats"/>
+          <HeroSkills :skills="hero.skills"/>
+          <HeroItems/>
         </template>
       </b-col>
-
     </b-row>
   </div>
 </template>
@@ -55,15 +53,6 @@ export default {
     HeroAttributes,
     HeroSkills,
     HeroItems
-  },
-
-  data () {
-    return {
-      isLoadingHero: false,
-      isLoadingItems: false,
-      hero: null,
-      items: null
-    }
   },
 
   computed: {
@@ -93,6 +82,20 @@ export default {
         alive,
         seasonCreated
       }
+    },
+
+    detailStats () {
+      // Devuelve el contenido de hero.stats y agrega el atributo classSlug
+      return { ...this.hero.stats, classSlug: this.hero.class }
+    }
+  },
+
+  data () {
+    return {
+      isLoadingHero: false,
+      isLoadingItems: false,
+      hero: null,
+      items: null
     }
   },
 
@@ -134,6 +137,5 @@ export default {
         this.isLoadingItems = false
       })
   }
-
 }
 </script>
