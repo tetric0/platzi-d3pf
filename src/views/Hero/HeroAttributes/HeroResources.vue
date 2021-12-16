@@ -13,11 +13,8 @@
           <span class="text-monospace"> {{ resources.resources.life.val | formatNumber }} </span>
         </div>
       </div>
-
     </div>
-
     <hr>
-
     <div class="resource">
       <div class="d-flex justify-content-start align-items-center">
         <!-- Imagen Recurso -->
@@ -38,9 +35,7 @@
           </span>
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
