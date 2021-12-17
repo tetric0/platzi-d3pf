@@ -12,6 +12,7 @@
       <!--         - Se convierte en el bloque derecho -->
       <b-col md="12" lg="8" order-lg="2">
         <BaseLoading v-if="isLoadingItems"/>
+        <HeroItems v-if="items" :items="items"/>
       </b-col>
       <!-- COLUMNA 1 (Attributes y Skills) -->
       <!--   En pantallas medianas e inferiores: -->
@@ -24,7 +25,6 @@
         <template v-if="hero">
           <HeroAttributes :attributes="detailStats"/>
           <HeroSkills :skills="hero.skills"/>
-          <HeroItems/>
         </template>
       </b-col>
     </b-row>
