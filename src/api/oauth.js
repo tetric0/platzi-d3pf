@@ -7,9 +7,9 @@ import { post } from 'axios'
 // NOTA: La documentación comenta que hay número máximo de llamadas por segundo y hora
 //       permitidas a la API.
 
-// El client_id y el clientSecret deberían ser privados…
-const clientId = '139ee6f2bd134e269ad17b031ee99d32'
-const clientSecret = 'ijRfBb536w2z2zefg28ZMsh85UsqNAMU'
+// Variables de entorno
+const clientId = process.env.VUE_APP_CLIENT_ID
+const clientSecret = process.env.VUE_APP_CLIENT_SECRET
 
 // API URL para hacer oauth
 const region = 'eu'
